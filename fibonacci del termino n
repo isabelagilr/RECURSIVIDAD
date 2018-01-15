@@ -1,0 +1,9 @@
+int fiboPosN(int n) 
+{
+	if((n==1) || (n==2))
+		return 1;
+	else
+	{
+		return fiboPosN(n-1)+fiboPosN(n-2);
+	}
+}
