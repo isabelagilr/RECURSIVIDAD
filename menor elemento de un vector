@@ -1,0 +1,15 @@
+int menorElemento(int v[], int n)
+{
+	if(n==1)
+		return v[0];
+	if(n==0)
+		return -10;
+	else
+	{
+		int men=menorElemento(v,n-1);
+		if(v[n-1]<men)
+			return v[n-1];
+		else
+			return men;
+	}
+}
