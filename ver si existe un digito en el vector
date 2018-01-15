@@ -1,0 +1,23 @@
+bool existe(int v[], int n, int x)
+{
+	if(n==1)
+	{
+		if(v[0]==x)
+			return true;
+		else 
+			return false;
+	}
+	else
+	{
+		bool ex=existe(v,n-1,x);
+		if(ex)
+			return true; //tengo que poner una variable bool con una condicion porque si ya lo pillo antes del ultimo
+		else              // igual me tiene que decir si es verdadero o falso ya que no necesariamente entra al ultimo para saber la respuesta final
+		{
+		if(v[n-1]==x)
+			return true;
+		else 
+			return false;
+		}
+	}
+}
