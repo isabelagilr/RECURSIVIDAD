@@ -1,0 +1,11 @@
+void cuadrado(int v[], int n) //muestre todos los elementos al cuadrado
+{
+	if (n==1)
+		v[0]=powf(v[0],2);
+	else
+	{
+		cuadrado(v,n-1);
+		v[n-1]=powf(v[n-1],2);
+	}
+
+}
