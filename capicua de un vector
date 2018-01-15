@@ -1,0 +1,13 @@
+bool capicua(int v[], int n) 
+{
+	if(n==1)
+		return true;
+	else
+	{
+		capicua(v,n-1);
+		if(v[n-1]==v[0])
+			return true;
+		else 
+			return false;
+	}
+}
