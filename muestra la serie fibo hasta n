@@ -1,0 +1,25 @@
+void main()
+{int nfibo,i=1;
+	cout<<"ingrese n"<<endl;
+	cin>>nfibo;
+
+	while(i<=nfibo)
+	{
+		cout<<fiboPosN(i)<<"  ";
+		i++;
+	}
+	cout<<endl;
+	cout<<"el numero de la serie fibonacci correspondiente al termino "<<nfibo<<" es: "<<fiboPosN(nfibo);
+  }
+  
+int fiboPosN(int n) 
+{
+	if(n<2)
+		return n;
+	
+	else
+	{
+		int x=fiboPosN(n-1);
+		return x+fiboPosN(n-2);
+	}
+}
