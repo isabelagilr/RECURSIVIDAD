@@ -1,0 +1,9 @@
+int mcd(int a, int b) //en void main hacer que mcd(a,b) el primero siempre sea mayor es decir si b es mayor pasarlo a "a" y b pasarlo a "b"
+{
+	if(b==0)
+		return a;
+	else
+	{
+		mcd(b,a%b);
+	}
+}
