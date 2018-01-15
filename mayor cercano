@@ -1,0 +1,72 @@
+// mayor cercano.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+
+void cargar(int v[], int n)
+{
+ int x; 
+ for(int i=0;i<n;i++)
+ {
+	 cout<<"Elemento "<<i+1<<" :";
+	 cin>>x;
+	 v[i]=x;
+ }
+}
+
+void mostrar(int v[], int n)
+{
+ for(int i=0;i<n;i++)
+	 cout<<v[i]<<"  ";
+
+ cout<<endl;
+}
+int mayorCercano(int v[],int n,int p)
+{
+	if(n==1)
+	{
+		if(v[0]>p)
+			return (v[0]);
+		else
+			return 100;
+	}
+	else
+	{
+		int x= mayorCercano(v,n-1,p);
+		
+		if( (v[n-1] > p) ) //para asegurarme que sean mayor que el digito
+		{
+			if(v[n-1] < x) //para asegurarme que sea el menor de los mayores al digito
+				return (v[n-1]);
+			else
+				return x;
+		}
+		else
+			return x;
+	}
+}
+
+void main()
+{
+	int v[50],n,p,maycer;
+	cout<<"Dimension del vector:";
+	cin>>n;
+	cargar(v,n);
+	cout<<endl;
+	cout<<"El vector cargado es:"<<endl;
+	mostrar(v,n);
+	cout<<endl;
+	cout<<"ingrese el digito que desesa encontrar su mayor cercano"<<endl;
+	cin>>p;
+	maycer=mayorCercano(v,n,p);
+	if(maycer==100)
+		maycer=p;
+	cout<<maycer;
+	getch();
+}
