@@ -1,0 +1,20 @@
+int sumapares(int v[], int n)
+{
+	if (n==1)
+	{	
+		if(v[0]%2==0)
+			return v[0];
+		else
+			return 0;
+	}
+	if(n==0)
+		return 0;
+	else
+	{
+		int sumpar=sumapares(v,n-1);
+		if((v[n-1]%2)==0)
+			return (sumpar + v[n-1]);
+		else
+			return sumpar;
+	}
+}
