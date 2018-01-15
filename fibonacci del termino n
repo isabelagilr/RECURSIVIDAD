@@ -7,3 +7,22 @@ int fiboPosN(int n)
 		return fiboPosN(n-1)+fiboPosN(n-2);
 	}
 }
+
+void main()
+{
+int a,b,aux,a1,b1;
+	
+cout<<"ingrese el primer numero"<<endl;
+cin>>a;
+cout<<"ingrese el segundo numero"<<endl;
+cin>>b;
+a1=a;
+b1=b;
+if(b>a) //siempre el mayor debe ir primero para que funcione el algoritmo de euclides
+{
+	aux=b;
+	b=a;
+	a=aux;
+}
+	cout<<"el mcd de"<<a1<<" y" <<b1<<" es:" <<mcd(a,b);
+}
