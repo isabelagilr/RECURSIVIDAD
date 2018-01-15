@@ -1,0 +1,10 @@
+float promedio (int vec[], int n)
+{
+	if (n==1)
+		return vec[0];
+	else
+	{
+		float p= promedio(vec,n-1);
+		return (p*(n-1)+vec[n-1])/n;
+	}
+}
