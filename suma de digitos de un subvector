@@ -1,0 +1,11 @@
+int sumasubVector(int v[], int i, int k)//como n es el elemnto de induccion ahora tiene que ser los elementos del subvector osea desde i hasta k
+{											// entonces para que calcule n=k-i+1 me da siempre los elementos de i hasta k
+	int n=k-i+1;
+	if(n==1)
+		return v[k];
+	else
+	{
+		int sum=sumasubVector(v,i,k-1); // porque ahora va desde i hasta uno antes de k entonces solo le resto a k
+		return sum+v[k]; //solo k porque ya es posicion no le tengo que restar nada ya esta directo
+	}	
+}
