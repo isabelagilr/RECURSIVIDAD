@@ -1,13 +1,65 @@
-bool capicua(int v[], int n) 
+// alalalla.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargarvec(int v[50], int n)
 {
-	if(n==1)
-		return true;
-	else
+	int i=0;
+	while(i<n)
 	{
-		capicua(v,n-1);
-		if(v[n-1]==v[0])
+		cout<<"INGRESE VALOR "<<i+1<<"= ";
+		cin>>v[i];
+		i++;
+	}
+}
+void mostrarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"   ";
+		i++;
+	}
+}
+
+bool capicua(int v[],int izq, int der)
+{
+	if(izq==0)
+	{
+		if(v[izq]==v[der])
 			return true;
 		else 
 			return false;
 	}
+	else
+	{
+		bool s=capicua(v,izq-1,der+1);
+		if (s)
+			if(v[izq]==v[der])
+				return true;
+			else
+				return false;
+		else
+			return false;
+	}
+}
+void main()
+{
+	int v[50],n;
+	cout<<"INGRESE EL TAMAaaaaaaaNO: ";
+	cin>>n;
+	cargarvec(v,n);
+	mostrarvec(v,n);
+	if(capicua(v,(n-1)/2,n/2)) //obligatoriamente le mando esos parametros
+		cout<<"ES capicua"<<endl;
+	else
+		cout<<"NO es capicua"<<endl;
+	getch();
 }
