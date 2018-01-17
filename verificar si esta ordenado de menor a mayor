@@ -1,0 +1,82 @@
+// examenPractico.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+
+using namespace std;
+
+void cargar(int v[], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"Elemento "<<i+1<<" :";
+		cin>>v[i];
+		i++;
+	}
+}
+
+void mostrar(int v[], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<" ";
+		i++;
+	}
+}
+
+bool ordenado(int v[],int n)
+{
+	if(n==1)
+	{
+		return true;
+	}
+	if(n==2)
+	{
+			if(v[0]<=v[1])
+				return true;
+			else
+				return false;
+	}
+	else
+	{
+		bool ord=ordenado(v,n-1);
+		if(ord)
+		{
+			if(v[n-1]>=v[n-2])
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+
+void main()
+{
+	int v[50],n;
+	do{
+	cout<<"ingresar n"<<endl;
+	cin>>n;
+	}while(n<=0);
+	cargar(v,n);
+	mostrar(v,n);
+	cout<<"el vector esta ordenado?"<<endl;
+	cout<<endl;
+	if(ordenado(v,n))
+		cout<<"SI ESTA ORDENADO"<<endl;
+	else
+		cout<<"NO ESTA ORDENADO"<<endl;
+
+	getch();
+}
