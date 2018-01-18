@@ -1,0 +1,30 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "stdio.h"
+
+using namespace std;
+
+
+void binario(int num)
+{	
+
+	if(num==0)
+		cout<<"0";
+	if(num==1)
+		cout<<"1";
+	if(num>1)
+	{
+		binario(num/2);
+		cout<<num%2;
+	}
+}
+
+void main()
+{
+	int num;
+	cout<<"ingrese el numero que desea convertir a binario"<<endl;
+	cin>>num;
+	binario(num);
+	getch();
+}
