@@ -1,0 +1,33 @@
+bool verificarOrdenado(int num)
+{
+	if(num<10)
+		return true;
+	else
+	{
+		bool verif=verificarOrdenado(num/10);
+
+		if(verif)
+		{
+			if(num%10>=((num/10)%10))
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+}
+
+void main()
+{
+	int num,numinv;
+	cout<<"ingrese un numero"<<endl;
+	cin>>num;
+	numinv=invertirNumero(num);
+	if(verificarOrdenado(num))
+		cout<<"esta ordenado"<<endl;
+	else
+		cout<<"no esta ordenado"<<endl;
+	
+	getch();
+}
