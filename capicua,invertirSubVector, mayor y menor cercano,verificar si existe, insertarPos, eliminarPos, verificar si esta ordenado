@@ -1,0 +1,215 @@
+// practicando Final.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+void cargarVector(int vec[], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"elemento"<<i+1<<": ";
+		cin>>vec[i];
+		i++;
+	}
+}
+
+void mostrarVector(int v[], int n)
+{
+	cout<<endl;
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"  ";
+		i++;
+	}
+}
+
+void eliminarPos(int v[], int &n, int pos)
+{
+	if(pos==(n-1))
+	{	
+		n=n-1;
+	}
+	else
+	{
+		v[pos]=v[pos+1];
+		eliminarPos(v,n,pos+1);
+	}
+}
+
+int mayorCercano(int v[], int n, int x)
+{
+	if(n==1)
+	{
+		if(v[n-1]>x)
+			return v[n-1];
+		else
+			return 100;
+	}
+	else
+	{
+		int may=mayorCercano(v,n-1,x);
+		if(v[n-1]>x)
+		{
+			if(v[n-1]<may)
+				return v[n-1];
+			else
+				return may;
+		}
+		else 
+			return may;
+	}
+}
+
+int menorCercano(int v[], int n, int x)
+{
+	if(n==1)
+	{
+		if(v[n-1]<x)
+			return v[n-1];
+		else
+			return -100;
+	}
+	else
+	{
+		int men=menorCercano(v,n-1,x);
+		if(v[n-1]<x)
+		{
+			if(v[n-1]>men)
+				return v[n-1];
+			else
+				return men;
+		}
+		else
+			return men;
+	}
+}
+
+void insertarPos(int v[], int &n, int pos, int x)
+{
+	if(pos==n-1)
+	{
+		v[pos+1]=v[pos];
+		v[pos]=x;
+		n=n+1;
+	}
+	else
+	{
+		insertarPos(v,n,pos+1,x);
+		v[pos+1]=v[pos];
+		v[pos]=x;
+	}
+}
+
+void invertirSubVector(int v[], int i, int k)
+{
+	int aux, aux2;
+	int n=k-i+1;
+	if(n==1)
+	{
+	}
+	else
+	{
+		if(n==2)
+		{
+			aux=v[i];
+			v[i]=v[k];
+			v[k]=aux;
+		}
+		else
+		{
+			invertirSubVector(v,i+1,k-1);
+			aux2=v[i];
+			v[i]=v[k];
+			v[k]=aux2;
+		}
+	}
+}
+
+bool capicua(int v[], int der, int izq)
+{
+	if(izq==0)
+	{
+		if(v[izq]==v[der])
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		bool cap=capicua(v,der+1,izq-1);
+		if(cap)
+		{
+			if(v[izq]==v[der])
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+}
+bool verificarExiste(int v[], int n, int x)
+{
+	if(n==1)
+	{
+		if(v[n-1]==x)
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		bool ex=verificarExiste(v,n-1,x);
+		if(ex)
+			return true;
+		else
+		{
+			if(v[n-1]==x)
+				return true;
+			else
+				return false;
+		}
+	}
+}
+bool verificarOrdenado(int v[], int n) //menor a mayor
+{
+	if(n==1)
+		return true;
+	else
+	{
+		bool ord=verificarOrdenado(v,n-1);
+		if(ord)
+		{
+			if(v[n-1]>=v[n-2])
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+}
+
+void main()
+{
+	int v[40], n,pos,x,men,i,k;
+	cout<<"ingrse el tamanho de su vector"<<endl;
+	cin>>n;
+	cargarVector(v,n);
+	mostrarVector(v,n);
+	cout<<"el vector esta ordenado?"<<endl;
+	cout<<endl;
+	if(verificarOrdenado(v,n))
+		cout<<"si esta"<<endl;
+	else
+		cout<<"no esta"<<endl;
+
+
+	getch();
+}
