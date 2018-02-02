@@ -1,78 +1,74 @@
-// menorCercano.cpp : Defines the entry point for the console application.
+// practicando Final.cpp : Defines the entry point for the console application.
 //
-
 #include "stdafx.h"
-#include "conio.h"
 #include <iostream>
-#include "stdio.h"
+#include "conio.h"
+#include "math.h"
 
 using namespace std;
 
-void cargar(int v[], int n)
+void cargarVector(int vec[], int n)
 {
- int x; 
- for(int i=0;i<n;i++)
- {
-	 cout<<"Elemento "<<i+1<<" :";
-	 cin>>x;
-	 v[i]=x;
- }
+	int i=0;
+	while(i<n)
+	{
+		cout<<"elemento"<<i+1<<": ";
+		cin>>vec[i];
+		i++;
+	}
 }
 
-void mostrar(int v[], int n)
+void mostrarVector(int v[], int n)
 {
- for(int i=0;i<n;i++)
-	 cout<<v[i]<<"  ";
-
- cout<<endl;
+	cout<<endl;
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"  ";
+		i++;
+	}
 }
 
-void insertarpos(int v[], int &n, int pos, int d)
+void eliminarPos(int v[], int &n, int pos)
+{
+	if(pos==(n-1))
+	{	
+		n=n-1;
+	}
+	else
+	{
+		v[pos]=v[pos+1];
+		eliminarPos(v,n,pos+1);
+	}
+}
+
+void insertarPos(int v[], int &n, int pos, int x)
 {
 	if(pos==n-1)
 	{
-		v[n]=v[n-1];
-		v[n-1]=d;
+		v[pos+1]=v[pos];
+		v[pos]=x;
 		n=n+1;
 	}
 	else
 	{
-		insertarpos(v,n,pos+1,d);
+		insertarPos(v,n,pos+1,x);
 		v[pos+1]=v[pos];
-		v[pos]=d;
+		v[pos]=x;
 	}
 }
 
-void eliminarpos(int v[], int &n, int pos)
-{
-	if(pos==n-1)
-		n=n-1;
-	else
-	{
-		v[pos]=v[pos+1];
-		eliminarpos(v,n,pos+1);
-	}
-}
 void main()
 {
-	int v[50],n,d,pos,pos1;
-	cout<<"Dimension del vector:";
+	int v[40], n,pos,x;
+	cout<<"ingrse el tamanho de su vector"<<endl;
 	cin>>n;
-	cargar(v,n);
-	cout<<endl;
-	cout<<"El vector cargado es:"<<endl;
-	mostrar(v,n);
-	cout<<endl;
-	cout<<"ingrese el digito que desea aumentar al vector"<<endl;
-	cin>>d;
-	cout<<"ingrese en que pos esta el digito"<<endl;
+	cargarVector(v,n);
+	mostrarVector(v,n);
+	cout<<endl<<"ingrese la pos que desea agregar y el valor"<<endl;
 	cin>>pos;
-	insertarpos(v,n,pos,d);
-	mostrar(v,n);
-	cout<<"ingrese en que pos esta el digito que quiere eliminar"<<endl;
-	cin>>pos1;
-	eliminarpos(v,n,pos1);
-	mostrar(v,n);
-
+	cin>>x;
+	insertarPos(v,n,pos,x);
+	mostrarVector(v,n);
 	getch();
 }
